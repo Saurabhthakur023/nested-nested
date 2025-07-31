@@ -124,7 +124,7 @@ const FinancialTable = () => {
   };
 
   return (
-    <div>
+    <div className="px-2 sm:px-4 lg:px-6">
       <style jsx global>{`
         /* Global styles to hide scrollbars in header sections */
         .header-no-scrollbar::-webkit-scrollbar {
@@ -141,78 +141,96 @@ const FinancialTable = () => {
           -ms-overflow-style: none;
           scrollbar-width: none;
         }
+        
+        /* Responsive table styles */
+        @media (max-width: 768px) {
+          .responsive-table-container {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+          }
+          
+          .responsive-table {
+            min-width: 800px;
+          }
+        }
       `}</style>
 
-      {}
-      <div className="overflow-hidden shadow-xl rounded-lg border border-blue-200">
-        <div className="header-no-scrollbar">
-          <table className="w-full border-collapse bg-white">
-            {}
+      {/* Summary Table */}
+      <div className="overflow-hidden shadow-xl rounded-lg border border-blue-200 mb-6">
+        <div className="header-no-scrollbar responsive-table-container">
+          <table className="w-full border-collapse bg-white responsive-table">
             <thead>
               <tr className="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 text-white">
-                <th className="border border-blue-300 px-2 py-2 text-left text-sm font-semibold min-w-[50px] shadow-sm">
+                <th className="border border-blue-300 px-2 py-2 text-left text-sm font-semibold min-w-[120px] sm:min-w-[150px]">
                   Year/Bookings/Invoice
                 </th>
-                <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[50px]">
+                <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[100px]">
                   Total Revenue
                 </th>
-                <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[50px]">
+                <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[100px]">
                   Actual Revenue
                 </th>
-                <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[50px]">
+                <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[100px]">
                   Remaining Revenue
                 </th>
-                <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[50px]">
+                <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[100px]">
                   Received Amount
                 </th>
-                <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[50px]">
+                <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[100px]">
                   Paid Salary
                 </th>
-                <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[50px]">
+                <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[80px]">
                   Expenses
                 </th>
-                <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[50px]">
+                <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[120px]">
                   Amount To be Pay
                 </th>
-                <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[50px]">
+                <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[100px]">
                   Total Paid Amt
                 </th>
               </tr>
             </thead>
             
-            {}
             <tbody>
-              <tr className="bg-gradient-to-r from-gray-50 to-blue-50 hover:from-blue-100 hover:to-indigo-100 cursor-pointer transition-all duration-200" onClick={() => setIsExpanded(!isExpanded)}>
-                <td className="border border-gray-200 px-4 py-3 text-sm">
-                  <div className="flex items-center gap-3">
+              <tr 
+                className="bg-gradient-to-r from-gray-50 to-blue-50 hover:from-blue-100 hover:to-indigo-100 cursor-pointer transition-all duration-200" 
+                onClick={() => setIsExpanded(!isExpanded)}
+              >
+                <td className="border border-gray-200 px-3 py-2 sm:px-4 sm:py-3 text-sm">
+                  <div className="flex items-center gap-2 sm:gap-3">
                     <div className="bg-blue-600 rounded-full p-1 transition-transform duration-200">
-                      {isExpanded ? <ChevronDown size={16} className="text-white" /> : <ChevronRight size={16} className="text-white" />}
+                      {isExpanded ? 
+                        <ChevronDown size={16} className="text-white" /> : 
+                        <ChevronRight size={16} className="text-white" />
+                      }
                     </div>
-                    <span className="font-semibold text-gray-800">▲({summaryData.year})/({summaryData.bookings})/({summaryData.invoice})</span>
+                    <span className="font-semibold text-gray-800 text-xs sm:text-sm">
+                      ▲({summaryData.year})/({summaryData.bookings})/({summaryData.invoice})
+                    </span>
                   </div>
                 </td>
-                <td className="border border-gray-200 px-4 py-3 text-center text-sm font-semibold text-green-700">
+                <td className="border border-gray-200 px-2 py-2 sm:px-4 sm:py-3 text-center text-xs sm:text-sm font-semibold text-green-700">
                   {formatCurrency(summaryData.totalRevenue)}
                 </td>
-                <td className="border border-gray-200 px-4 py-3 text-center text-sm font-semibold text-green-600">
+                <td className="border border-gray-200 px-2 py-2 sm:px-4 sm:py-3 text-center text-xs sm:text-sm font-semibold text-green-600">
                   {formatCurrency(summaryData.actualRevenue)}
                 </td>
-                <td className="border border-gray-200 px-4 py-3 text-center text-sm font-semibold text-orange-600">
+                <td className="border border-gray-200 px-2 py-2 sm:px-4 sm:py-3 text-center text-xs sm:text-sm font-semibold text-orange-600">
                   {formatCurrency(summaryData.remainingRevenue)}
                 </td>
-                <td className="border border-gray-200 px-4 py-3 text-center text-sm font-semibold text-blue-600">
+                <td className="border border-gray-200 px-2 py-2 sm:px-4 sm:py-3 text-center text-xs sm:text-sm font-semibold text-blue-600">
                   {formatCurrency(summaryData.receivedAmount)}
                 </td>
-                <td className="border border-gray-200 px-4 py-3 text-center text-sm font-semibold text-purple-600">
+                <td className="border border-gray-200 px-2 py-2 sm:px-4 sm:py-3 text-center text-xs sm:text-sm font-semibold text-purple-600">
                   {formatCurrency(summaryData.paidSalary)}
                 </td>
-                <td className="border border-gray-200 px-4 py-3 text-center text-sm font-semibold text-gray-600">
+                <td className="border border-gray-200 px-2 py-2 sm:px-4 sm:py-3 text-center text-xs sm:text-sm font-semibold text-gray-600">
                   {formatCurrency(summaryData.expenses)}
                 </td>
-                <td className="border border-gray-200 px-4 py-3 text-center text-sm font-semibold text-red-600">
+                <td className="border border-gray-200 px-2 py-2 sm:px-4 sm:py-3 text-center text-xs sm:text-sm font-semibold text-red-600">
                   {formatCurrency(summaryData.amountToBePay)}
                 </td>
-                <td className="border border-gray-200 px-4 py-3 text-center text-sm font-semibold text-gray-600">
+                <td className="border border-gray-200 px-2 py-2 sm:px-4 sm:py-3 text-center text-xs sm:text-sm font-semibold text-gray-600">
                   {formatCurrency(summaryData.totalPaidAmt)}
                 </td>
               </tr>
@@ -221,145 +239,162 @@ const FinancialTable = () => {
         </div>
       </div>
 
-      {}
+      {/* Detail Table - Expanded View */}
       {isExpanded && (
-        <div className="mt-6 ml-8 bg-white rounded-xl shadow-2xl border border-gray-200">
-          {}
-          <div className="bg-gradient-to-r from-slate-100 via-blue-50 to-indigo-50 px-6 py-4 border-b border-gray-200 rounded-t-xl">
-            <h3 className="text-xl font-bold text-gray-800 mb-3">
+        <div className="mb-6 mx-2 sm:ml-8 bg-white rounded-xl shadow-2xl border border-gray-200">
+          {/* Detail Header */}
+          <div className="bg-gradient-to-r from-slate-100 via-blue-50 to-indigo-50 px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 rounded-t-xl">
+            <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2 sm:mb-3">
               Financial Year - {summaryData.year}
             </h3>
-            <div className="flex flex-wrap gap-8 text-sm">
-              <span className="bg-green-100 text-green-800 px-3 py-1 rounded-full font-medium">
+            <div className="flex flex-wrap gap-2 sm:gap-3 text-xs sm:text-sm">
+              <span className="bg-green-100 text-green-800 px-2 py-1 sm:px-3 sm:py-1 rounded-full font-medium">
                 Total Processing: <strong>120</strong>
               </span>
-              <span className="bg-red-100 text-red-800 px-3 py-1 rounded-full font-medium">
+              <span className="bg-red-100 text-red-800 px-2 py-1 sm:px-3 sm:py-1 rounded-full font-medium">
                 Total Cancelled: <strong>7</strong>
               </span>
-              <span className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-medium">
+              <span className="bg-blue-100 text-blue-800 px-2 py-1 sm:px-3 sm:py-1 rounded-full font-medium">
                 Total Received: <strong>0</strong>
               </span>
             </div>
           </div>
 
-          {}
-          <div className="relative px-12 py-4">
-            {}
+          {/* Detail Table with Scroll Controls */}
+          <div className="relative px-2 sm:px-12 py-2 sm:py-4">
+            {/* Left Scroll Button */}
             <button
               onClick={scrollLeft}
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 z-20 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110"
+              className="hidden sm:block absolute left-2 top-1/2 transform -translate-y-1/2 z-20 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-full p-2 sm:p-3 shadow-lg transition-all duration-200 hover:scale-110"
             >
               <ChevronLeft size={13} />
             </button>
 
-            {}
+            {/* Right Scroll Button */}
             <button
               onClick={scrollRight}
-              className="absolute right-2 top-1/2 transform -translate-y-1/2 z-20 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110"
+              className="hidden sm:block absolute right-2 top-1/2 transform -translate-y-1/2 z-20 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-full p-2 sm:p-3 shadow-lg transition-all duration-200 hover:scale-110"
             >
               <ChevronRightIcon size={13} />
             </button>
 
-            <div className="overflow-x-auto hide-scrollbar" ref={scrollContainerRef}>
-              <table className="w-full border-collapse">
-                {}
+            {/* Mobile Navigation Buttons */}
+            <div className="sm:hidden flex justify-between mb-2">
+              <button
+                onClick={scrollLeft}
+                className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full p-2 shadow-lg"
+              >
+                <ChevronLeft size={13} />
+              </button>
+              <button
+                onClick={scrollRight}
+                className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-full p-2 shadow-lg"
+              >
+                <ChevronRightIcon size={13} />
+              </button>
+            </div>
+
+            <div className="overflow-x-auto hide-scrollbar responsive-table-container" ref={scrollContainerRef}>
+              <table className="w-full border-collapse responsive-table">
                 <thead>
                   <tr className="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 text-white">
-                    <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[80px]">
+                    <th className="border border-blue-300 px-2 py-2 text-center text-xs sm:text-sm font-semibold min-w-[60px] sm:min-w-[80px]">
                       ID
                     </th>
-                    <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[120px]">
+                    <th className="border border-blue-300 px-2 py-2 text-center text-xs sm:text-sm font-semibold min-w-[90px] sm:min-w-[120px]">
                       Booking Date
                     </th>
-                    <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[100px]">
+                    <th className="border border-blue-300 px-2 py-2 text-center text-xs sm:text-sm font-semibold min-w-[80px] sm:min-w-[100px]">
                       Month
                     </th>
-                    <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[180px]">
+                    <th className="border border-blue-300 px-2 py-2 text-center text-xs sm:text-sm font-semibold min-w-[120px] sm:min-w-[180px]">
                       Builder
                     </th>
-                    <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[180px]">
+                    <th className="border border-blue-300 px-2 py-2 text-center text-xs sm:text-sm font-semibold min-w-[120px] sm:min-w-[180px]">
                       Project
                     </th>
-                    <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[140px]">
-                      Customer Name
+                    <th className="border border-blue-300 px-2 py-2 text-center text-xs sm:text-sm font-semibold min-w-[100px] sm:min-w-[140px]">
+                      Customer
                     </th>
-                    <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[140px]">
-                      Contact No.
+                    <th className="border border-blue-300 px-2 py-2 text-center text-xs sm:text-sm font-semibold min-w-[90px] sm:min-w-[120px]">
+                      Contact
                     </th>
-                    <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[140px]">
-                      Email Id
+                    <th className="border border-blue-300 px-2 py-2 text-center text-xs sm:text-sm font-semibold min-w-[120px] sm:min-w-[140px]">
+                      Email
                     </th>
-                    <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[140px]">
+                    <th className="border border-blue-300 px-2 py-2 text-center text-xs sm:text-sm font-semibold min-w-[60px] sm:min-w-[80px]">
                       Type
                     </th>
-                    <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[140px]">
-                      Unit No.
+                    <th className="border border-blue-300 px-2 py-2 text-center text-xs sm:text-sm font-semibold min-w-[80px] sm:min-w-[100px]">
+                      Unit No
                     </th>
-                    <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[140px]">
+                    <th className="border border-blue-300 px-2 py-2 text-center text-xs sm:text-sm font-semibold min-w-[70px] sm:min-w-[90px]">
                       Size
                     </th>
-                    <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[140px]">
-                      Agreement Value
+                    <th className="border border-blue-300 px-2 py-2 text-center text-xs sm:text-sm font-semibold min-w-[90px] sm:min-w-[120px]">
+                      Agreement
                     </th>
-                    <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[140px]">
-                      Commission %
+                    <th className="border border-blue-300 px-2 py-2 text-center text-xs sm:text-sm font-semibold min-w-[70px] sm:min-w-[90px]">
+                      Comm %
                     </th>
-                    <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[140px]">
-                      Total Revenue
+                    <th className="border border-blue-300 px-2 py-2 text-center text-xs sm:text-sm font-semibold min-w-[90px] sm:min-w-[120px]">
+                      Revenue
                     </th>
-                    <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[140px]">
-                      CashBack %
+                    <th className="border border-blue-300 px-2 py-2 text-center text-xs sm:text-sm font-semibold min-w-[70px] sm:min-w-[90px]">
+                      CashBack
                     </th>
                   </tr>
                 </thead>
                 
-                {}
                 <tbody>
                   {detailData.map((row, index) => (
-                    <tr key={row.id} className={`${index % 2 === 0 ? "bg-white" : "bg-gradient-to-r from-slate-50 to-blue-50"} hover:bg-gradient-to-r hover:from-blue-100 hover:to-indigo-100 transition-all duration-200`}>
-                      <td className="border border-gray-200 px-4 py-3 text-center text-sm font-medium text-blue-700">
+                    <tr 
+                      key={row.id} 
+                      className={`${index % 2 === 0 ? "bg-white" : "bg-gradient-to-r from-slate-50 to-blue-50"} hover:bg-gradient-to-r hover:from-blue-100 hover:to-indigo-100 transition-all duration-200`}
+                    >
+                      <td className="border border-gray-200 px-2 py-2 text-center text-xs sm:text-sm font-medium text-blue-700">
                         {row.id}
                       </td>
-                      <td className="border border-gray-200 px-4 py-3 text-center text-sm text-gray-700">
+                      <td className="border border-gray-200 px-2 py-2 text-center text-xs sm:text-sm text-gray-700">
                         {row.bookingDate}
                       </td>
-                      <td className="border border-gray-200 px-4 py-3 text-center text-sm text-gray-700">
+                      <td className="border border-gray-200 px-2 py-2 text-center text-xs sm:text-sm text-gray-700">
                         {row.month}
                       </td>
-                      <td className="border border-gray-200 px-4 py-3 text-center text-sm font-medium text-gray-800">
+                      <td className="border border-gray-200 px-2 py-2 text-center text-xs sm:text-sm font-medium text-gray-800 truncate">
                         {row.builder}
                       </td>
-                      <td className="border border-gray-200 px-4 py-3 text-center text-sm font-medium text-indigo-700">
+                      <td className="border border-gray-200 px-2 py-2 text-center text-xs sm:text-sm font-medium text-indigo-700 truncate">
                         {row.project}
                       </td>
-                      <td className="border border-gray-200 px-4 py-3 text-center text-sm font-medium text-gray-800">
+                      <td className="border border-gray-200 px-2 py-2 text-center text-xs sm:text-sm font-medium text-gray-800 truncate">
                         {row.customerName}
                       </td>
-                      <td className="border border-gray-200 px-4 py-3 text-center text-sm text-green-700 font-medium">
+                      <td className="border border-gray-200 px-2 py-2 text-center text-xs sm:text-sm text-green-700 font-medium truncate">
                         {row.contactNo}
                       </td>
-                      <td className="border border-gray-200 px-4 py-3 text-center text-sm text-green-700 font-medium">
+                      <td className="border border-gray-200 px-2 py-2 text-center text-xs sm:text-sm text-green-700 font-medium truncate">
                         {row.Email}
                       </td>
-                      <td className="border border-gray-200 px-4 py-3 text-center text-sm text-green-700 font-medium">
+                      <td className="border border-gray-200 px-2 py-2 text-center text-xs sm:text-sm text-green-700 font-medium">
                         {row.Type}
                       </td>
-                      <td className="border border-gray-200 px-4 py-3 text-center text-sm text-green-700 font-medium">
+                      <td className="border border-gray-200 px-2 py-2 text-center text-xs sm:text-sm text-green-700 font-medium">
                         {row.UnitNo}
                       </td>
-                      <td className="border border-gray-200 px-4 py-3 text-center text-sm text-green-700 font-medium">
+                      <td className="border border-gray-200 px-2 py-2 text-center text-xs sm:text-sm text-green-700 font-medium">
                         {row.Size}
                       </td>
-                      <td className="border border-gray-200 px-4 py-3 text-center text-sm text-green-700 font-medium">
+                      <td className="border border-gray-200 px-2 py-2 text-center text-xs sm:text-sm text-green-700 font-medium">
                         {row.AgreementValue}
                       </td>
-                      <td className="border border-gray-200 px-4 py-3 text-center text-sm text-green-700 font-medium">
+                      <td className="border border-gray-200 px-2 py-2 text-center text-xs sm:text-sm text-green-700 font-medium">
                         {row.Commission}
                       </td>
-                      <td className="border border-gray-200 px-4 py-3 text-center text-sm text-green-700 font-medium">
+                      <td className="border border-gray-200 px-2 py-2 text-center text-xs sm:text-sm text-green-700 font-medium">
                         {row.TotalRevenue}
                       </td>
-                      <td className="border border-gray-200 px-4 py-3 text-center text-sm text-green-700 font-medium">
+                      <td className="border border-gray-200 px-2 py-2 text-center text-xs sm:text-sm text-green-700 font-medium">
                         {row.CashBack}
                       </td>
                     </tr>
@@ -371,37 +406,37 @@ const FinancialTable = () => {
         </div>
       )}
 
-      {}
-      <div className="mt-6 overflow-hidden shadow-xl rounded-lg border border-blue-200">
-        <div className="header-no-scrollbar">
-          <table className="w-full border-collapse bg-white">
+      {/* Footer Table */}
+      <div className="overflow-hidden shadow-xl rounded-lg border border-blue-200">
+        <div className="header-no-scrollbar responsive-table-container">
+          <table className="w-full border-collapse bg-white responsive-table">
             <thead>
               <tr className="bg-gradient-to-r from-blue-600 via-blue-700 to-indigo-700 text-white">
-                <th className="border border-blue-300 px-2 py-2 text-left text-sm font-semibold min-w-[50px]">
+                <th className="border border-blue-300 px-2 py-2 text-left text-xs sm:text-sm font-semibold min-w-[120px] sm:min-w-[150px]">
                   Year/Bookings/Invoice
                 </th>
-                <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[50px]">
+                <th className="border border-blue-300 px-2 py-2 text-center text-xs sm:text-sm font-semibold min-w-[100px]">
                   Total Revenue
                 </th>
-                <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[50px]">
+                <th className="border border-blue-300 px-2 py-2 text-center text-xs sm:text-sm font-semibold min-w-[100px]">
                   Actual Revenue
                 </th>
-                <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[50px]">
+                <th className="border border-blue-300 px-2 py-2 text-center text-xs sm:text-sm font-semibold min-w-[100px]">
                   Remaining Revenue
                 </th>
-                <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[50px]">
+                <th className="border border-blue-300 px-2 py-2 text-center text-xs sm:text-sm font-semibold min-w-[100px]">
                   Received Amount
                 </th>
-                <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[50px]">
+                <th className="border border-blue-300 px-2 py-2 text-center text-xs sm:text-sm font-semibold min-w-[100px]">
                   Paid Salary
                 </th>
-                <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[50px]">
+                <th className="border border-blue-300 px-2 py-2 text-center text-xs sm:text-sm font-semibold min-w-[80px]">
                   Expenses
                 </th>
-                <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[50px]">
+                <th className="border border-blue-300 px-2 py-2 text-center text-xs sm:text-sm font-semibold min-w-[120px]">
                   Amount To be Pay
                 </th>
-                <th className="border border-blue-300 px-2 py-2 text-center text-sm font-semibold min-w-[50px]">
+                <th className="border border-blue-300 px-2 py-2 text-center text-xs sm:text-sm font-semibold min-w-[100px]">
                   Total Paid Amt
                 </th>
               </tr>
