@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { ChevronDown, ChevronRight, ChevronLeft, ChevronRight as ChevronRightIcon } from 'lucide-react';
 
 const FinancialTable = () => {
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
   const scrollContainerRef = useRef(null);
 
   const scrollLeft = () => {
@@ -30,7 +30,7 @@ const FinancialTable = () => {
     amountToBePay: 21104132,
     totalPaidAmt: 0
   };
-
+   
   const detailData = [
     {
       id: 893,
@@ -156,7 +156,7 @@ const FinancialTable = () => {
       `}</style>
 
       {/* Summary Table */}
-      <div className="overflow-hidden shadow-xl rounded-lg border border-blue-200 mb-6">
+      <div className=" p-4 overflow-hidden shadow-xl rounded-lg border border-blue-200 mb-6">
         <div className="header-no-scrollbar responsive-table-container">
           <table className="w-full border-collapse bg-white responsive-table">
             <thead>
@@ -205,7 +205,7 @@ const FinancialTable = () => {
                       }
                     </div>
                     <span className="font-semibold text-gray-800 text-xs sm:text-sm">
-                      ▲({summaryData.year})/({summaryData.bookings})/({summaryData.invoice})
+                      ({summaryData.year})/({summaryData.bookings})/({summaryData.invoice})
                     </span>
                   </div>
                 </td>
