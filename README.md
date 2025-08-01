@@ -26,8 +26,7 @@ src/
 └── main.jsx
 
 bash
-Copy
-Edit
+
 
 ## 🚀 Getting Started
 
