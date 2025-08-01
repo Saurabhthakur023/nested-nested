@@ -76,25 +76,7 @@ Visit http://localhost:5173 to view the dashboard.
 📸 Screenshots
 <!-- Add screenshots here --> <!-- ![Screenshot](path-to-your-screenshot.png) -->
 🙋‍♂️ Author
-Saurabh Singh
-GitHub Profile
-
-📄 License
-This project is open-source and available under the MIT License.
-
-yaml
-Copy
-Edit
-
----
-
-If you'd like me to generate a screenshot preview (`screenshot.png`) or want help deploying it (e.g., to Vercel/Netlify), just let me know!
+Saurabh Singh Rathore
 
 
 
-
-
-
-
-
-Ask ChatGPT
