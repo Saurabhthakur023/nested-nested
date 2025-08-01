@@ -8,7 +8,6 @@ A modern, responsive React-based admin dashboard featuring highly flexible **nes
 
 - 📦 Expandable nested rows
 - 🔍 Real-time search and filter
-- 🧩 Category toggles (e.g., Electronics, Clothing)
 - ↔️ Horizontal scroll with smooth arrows
 - 📱 Responsive design with Tailwind
 - 🔄 Reusable and maintainable components
@@ -73,8 +72,7 @@ Visit http://localhost:5173 to view the dashboard.
 
  Mobile-first improvements
 
-📸 Screenshots
-<!-- Add screenshots here --> <!-- ![Screenshot](path-to-your-screenshot.png) -->
+
 🙋‍♂️ Author
 Saurabh Singh Rathore
 
